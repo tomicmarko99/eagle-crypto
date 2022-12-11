@@ -40,9 +40,24 @@ const App = () => {
     }
   });
 
+  const [shadow, setShadow] = useState("");
+  useEffect(() => {
+    const changeShadow = () => {
+      if (window.scrollY >= 60) {
+        setShadow("rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px");
+      } else {
+        setShadow("");
+      }
+    };
+    window.addEventListener("scroll", changeShadow);
+  }, []);
+
   return (
     <>
-      <div className="Navbar w-full bg-[#fff] m-auto px-5 py-3 fixed">
+      <div
+        style={{ boxShadow: `${shadow}`, transition: "all .2s" }}
+        className="Navbar w-full bg-[#fff] m-auto px-5 py-3 fixed"
+      >
         <div className="max-w-[1080px] w-full m-auto flex flex-col md:flex-row gap-3 items-center justify-center md:justify-between">
           <div className="logo flex items-center text-[#333333] text-3xl font-[500]">
             <img src={CryptoEagleLogo} alt="" className="max-w-[50px]" />
